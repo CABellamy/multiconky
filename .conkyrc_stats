@@ -1,0 +1,87 @@
+-- Conky, a system monitor https://github.com/brndnmtthws/conky
+
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    xftfont = 'Source Sans Pro:size=12',
+    xftalpha = 0.1,
+    gap_x = 2,
+    gap_y = 40,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+
+    -- windows
+    own_window = true,							-- create your own window to draw
+	own_window_argb_value = 100,			    -- real transparency - composite manager required 0-255
+	own_window_argb_visual = true,				-- use ARGB - composite manager required
+	own_window_colour = '#000000',				-- set colour if own_window_transparent no
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
+	own_window_transparent = false,				-- if own_window_argb_visual is true sets background opacity 0%
+	own_window_title = 'system_conky',			-- set the name manually  - default conky "hostname"
+	own_window_type = 'normal',	
+    own_window = true,
+    own_window_class = 'conky-semi',
+
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+    
+    -- colors
+    color1 = '2d2d2d',
+    color2 = '4A2B45',
+    color3 = '382536',
+    color4 = '3F2E2F',
+    color5 = '000000',
+    color6 = '2d2d2d',
+    color7 = 'F0F5F9'
+}
+
+conky.text = [[
+${color6}Info:$color2 ${scroll 32 Conky $conky_version - $sysname $nodename $kernel $machine}
+$hr
+${color6}Uptime:$color2 $uptime
+${color6}Frequency (in GHz):$color2 $freq_g
+${color6}RAM Usage:$color2 $mem/$memmax - $memperc% ${membar 4}
+${color6}Swap Usage:$color2 $swap/$swapmax - $swapperc% ${swapbar 4}
+${color6}CPU Usage:$color2 $cpu% ${cpubar 4}
+${color6}Processes:$color2 $processes  ${color6}Running:$color2 $running_processes
+$hr
+${color6}File systems:
+ / $color2${fs_used /}/${fs_size /} ${fs_bar 6 /}
+$hr
+${color6}Name             ${alignr}${color3}pid   cpu   mem
+${color2} ${top name 1} ${alignr} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color2} ${top name 2} ${alignr} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color2} ${top name 3} ${alignr} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color2} ${top name 4} ${alignr} ${top pid 4} ${top cpu 4} ${top mem 4}
+$hr
+${color6}IP Address:${color1}${font} ${alignr}${addr wlp166s0}
+${if_match "${addr wlp166s0}"!="No Address"}${voffset 5}${color6}Download ${alignr}${color2}${downspeedf wlp166s0}k/s (${totaldown enp6s0})
+${color3}${downspeedgraph wlp166s0 50,280 2d2d2d 2d2d2d -t}
+${color6} Upload ${alignr}${color2}${upspeedf enp6s0}k/s (${totalup wlp166s0})
+${color3}${upspeedgraph wlp166s0 50,280 2d2d2d 2d2d2d -t}
+
+
+
+]]
